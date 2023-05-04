@@ -1,4 +1,5 @@
-const gameHeight = 5; // Defines the height of the floor and ceiling in the game.
+const ceilingHeight = 5; // Defines the height of the floor and ceiling in the game.
+const groundHeight = 7;
 
 var camera;
 
@@ -19,13 +20,13 @@ var createScene = function () {
     var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0.3, 0.7, -0.3), scene);
 
     // Default intensity is 1. Let's dim the light a small amount
-    light.intensity = 0.7;
+    light.intensity = 1;
 
     // Add a ground and ceiling object
     var ground = BABYLON.MeshBuilder.CreateBox("ground", {width: 100, depth: 6, height: 1}, scene);
     var ceiling = BABYLON.MeshBuilder.CreateBox("ceiling", {width: 100, depth: 6, height: 1}, scene);
-    ground.position.y = -gameHeight - 0.5; // +/- 0.5 to account for height of the cubes
-    ceiling.position.y = gameHeight + 0.5; 
+    ground.position.y = -groundHeight - 0.5; // +/- 0.5 to account for height of the cubes
+    ceiling.position.y = ceilingHeight + 0.5; 
 
     createHud();
 

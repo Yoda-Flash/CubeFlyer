@@ -13,12 +13,12 @@ class Barrier extends GameObject {
 
         // Creates 2 boxes which will be used for the top and bottom obstacles,
         // the floor will obscure the height of the object so we don't need to modify this much.
-        const boxOptions = {width: 1, height: 10, depth: 1};
+        const boxOptions = {width: 1, height: 8, depth: 1};
         this.ceilingBox = BABYLON.MeshBuilder.CreateBox("ceilingObstacle", boxOptions, scene);
         this.floorBox = BABYLON.MeshBuilder.CreateBox("floorObstacle", boxOptions, scene);
         // Materials impact how an object is rendered like color, texture etc.
         let barrierMaterial = new BABYLON.StandardMaterial("Barrier Material", scene);
-        barrierMaterial.diffuseColor = BABYLON.Color3.Green();
+        barrierMaterial.diffuseColor = BABYLON.Color3.Blue();
         this.ceilingBox.material = barrierMaterial;
         this.floorBox.material = barrierMaterial;
         this.assignLocations();
@@ -45,9 +45,10 @@ class Barrier extends GameObject {
 
     assignLocations() {
         // Pick a random center point
-        let height = -gameHeight + (gapSize/2) + (Math.random() * (gameHeight-(gapSize/2)) * 2);
-        this.ceilingBox.position.y = height + gapSize/2 + 5;
-        this.floorBox.position.y = height - gapSize/2 - 5;
+        let ceilingHeight = -ceilingHeight + (gapSize/2) + (Math.random() * (ceilingHeight-(gapSize/2)) * 2);
+        let groundHeight = -groundHeight + (gapSize/2) + (Math.random() * (groundHeight-(gapSize/2)) * 2);
+        this.ceilingBox.position.y = ceilingHeight + gapSize/2 + 5;
+        this.floorBox.position.y = groundHeight - gapSize/2 - 5;
         this.ceilingBox.position.x = this.location;
         this.floorBox.position.x = this.location;
     }
